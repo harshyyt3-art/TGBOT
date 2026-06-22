@@ -44,7 +44,7 @@ ADMIN_DISPLAY  = "Harsh"                    # how the bot addresses you
 GROQ_MODEL = "llama-3.3-70b-versatile"     # best free model on Groq
 
 # ── Bot Identity ────────────────────────────────────
-BOT_NAME        = "Harsh_beta"                   # give the bot a name
+BOT_NAME        = "Aria"                   # give the bot a name
 BOT_DESCRIPTION = "AI Assistant"
 
 # ── Group Behavior ──────────────────────────────────
@@ -53,7 +53,7 @@ BOT_DESCRIPTION = "AI Assistant"
 #   2. Someone replies directly to the bot's message
 #   3. An admin sends a command
 # In private chats → always replies
-REPLY_TO_ALL_IN_GROUP = False   # set True if you want bot to reply to every message
+REPLY_TO_ALL_IN_GROUP = True   # set True if you want bot to reply to every message
 
 # ══════════════════════════════════════════════════════
 #  ❷  SYSTEM PROMPTS
