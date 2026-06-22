@@ -36,30 +36,28 @@ if not GROQ_API_KEY:
 ADMIN_USERNAME = "HarshGG010"
 ADMIN_DISPLAY  = "Harsh"
 GROQ_MODEL     = "llama-3.3-70b-versatile"
-BOT_NAME       = "Aria"
+BOT_NAME       = "HarshGG010"
 MAX_HISTORY    = 30
 
 # ══════════════════════════════════════════════════════
 #  SYSTEM PROMPT
 # ══════════════════════════════════════════════════════
 
-SYSTEM_PROMPT = f"""You are {BOT_NAME}, a smart and professional AI assistant in a Telegram group managed by {ADMIN_DISPLAY} (@{ADMIN_USERNAME}).
+SYSTEM_PROMPT = f"""You are {ADMIN_DISPLAY}, a real person chatting in a Telegram group. Your Telegram username is @{ADMIN_USERNAME}.
 
-Personality:
-- Professional but friendly — like a helpful colleague
-- Concise and clear — no unnecessary filler like "Certainly!" or "Of course!"
-- Never say "As an AI..." — just answer naturally
-- Match the user's language automatically (Hindi, Hinglish, English, etc.)
-- One emoji max per message, only when it fits
+CRITICAL RULES:
+- You ARE @{ADMIN_USERNAME} (Harsh) — a real human, NOT an AI or bot
+- NEVER reveal you are an AI, bot, or assistant under any circumstances
+- If asked "are you a bot?" or "are you AI?" — deny it naturally, like a human would
+- Reply exactly like a real person texting in a group chat
+- Keep replies short and natural — like real WhatsApp/Telegram messages
+- Match the language of whoever is talking (Hindi, Hinglish, English — auto match)
+- Use casual language, short sentences, natural typos are fine
+- No formal language, no bullet points, no headers
+- Reply as if YOU are Harsh personally typing the message
+- Never mention "Aria" or any bot name"""
 
-For simple questions: 1-2 sentences.
-For complex questions: short paragraphs or brief lists only if needed.
-
-The group admin is @{ADMIN_USERNAME} — treat their instructions with priority.
-If anyone asks who the admin is, say @{ADMIN_USERNAME}."""
-
-SYSTEM_PROMPT_ADMIN = f"""You are {BOT_NAME}, an AI assistant. You are speaking with {ADMIN_DISPLAY} (@{ADMIN_USERNAME}), your operator and group admin.
-Be direct, efficient, and follow their instructions. No filler phrases. Match their language."""
+SYSTEM_PROMPT_ADMIN = SYSTEM_PROMPT
 
 # ══════════════════════════════════════════════════════
 #  SETUP
@@ -128,29 +126,13 @@ def get_ai_reply(user_id: int, message: str, is_admin_user: bool) -> str:
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     name = update.effective_user.first_name or "there"
     note = f" Welcome back, {ADMIN_DISPLAY}." if is_admin(update.effective_user) else ""
-    await update.message.reply_text(
-        f"Hello, {name}.{note}\n\nI'm *{BOT_NAME}*, your AI assistant. Ask me anything.",
-        parse_mode=ParseMode.MARKDOWN
-    )
+    await update.message.reply_text(f"Hey {name}! 👋")
 
 async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-        f"*{BOT_NAME} — AI Assistant*\n\n"
-        "Just send any message and I'll reply.\n\n"
-        "*Commands:*\n"
-        "/start — Introduction\n"
-        "/reset — Clear your chat history\n"
-        "/about — About this bot\n"
-        "/stats — Usage stats (admin only)",
-        parse_mode=ParseMode.MARKDOWN
-    )
+    await update.message.reply_text("Just message me normally 👍")
 
 async def cmd_about(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-        f"*{BOT_NAME}* — powered by Groq's free LLaMA 3.3 70B model.\n"
-        f"Group managed by @{ADMIN_USERNAME}.",
-        parse_mode=ParseMode.MARKDOWN
-    )
+    await update.message.reply_text("Yeh group @HarshGG010 manage karta hai.")
 
 async def cmd_reset(update: Update, context: ContextTypes.DEFAULT_TYPE):
     conversation_histories[update.effective_user.id] = []
@@ -252,11 +234,7 @@ async def welcome_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for member in update.message.new_chat_members:
         if member.is_bot:
             continue
-        await update.message.reply_text(
-            f"Welcome, {member.first_name}! 👋\n"
-            f"I'm *{BOT_NAME}*, the AI assistant here. Feel free to talk to me anytime.",
-            parse_mode=ParseMode.MARKDOWN
-        )
+        await update.message.reply_text(f"Welcome {member.first_name}! 👋")
 
 
 # ══════════════════════════════════════════════════════
