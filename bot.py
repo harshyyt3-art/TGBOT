@@ -44,7 +44,7 @@ ADMIN_DISPLAY  = "Harsh"                    # how the bot addresses you
 GROQ_MODEL = "llama-3.3-70b-versatile"     # best free model on Groq
 
 # ── Bot Identity ────────────────────────────────────
-BOT_NAME        = "Harsh_beta"                   # give the bot a name
+BOT_NAME        = "Aria"                   # give the bot a name
 BOT_DESCRIPTION = "AI Assistant"
 
 # ── Group Behavior ──────────────────────────────────
